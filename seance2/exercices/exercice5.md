@@ -5,7 +5,7 @@ db.employes.aggregate([
     // Groupe par prénom et calcule la somme de l'ancienneté
     {
         $group: {
-            _id: "$prenom",
+            _id: '$prenom',
             totalAnciennete: { $sum: "$anciennete" },
             nombreEmployes: { $sum: 1 }
         },
