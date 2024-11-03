@@ -56,15 +56,20 @@ db.employes.find({ prenom: /^D.{4}$/ })
 ```javascript
 db.employes.find({
     $and: [
-        { prenom: /^[aeiouAEIOU]/ },
-        { prenom: /[aeiouAEIOU]$/ }
+        { prenom: /^[AEIOU]/ },
+        { prenom: /[aeiou]$/ }
     ]
 })
+
+Ou
+
+db.employes.find({prenom : /^[AEUIOY].*[aeuioy]$/})
 ```
 
 #### 9. Afficher la liste des personnes dont le prénom commence et se termine par la même lettre
 ```javascript
-db.employes.find({
-    prénom: /^(.).*\1$/
-})
+db.employes.find().toArray().filter(function(x) {
+    var a = x.prenom.toLowerCase();
+    return a.substr(0, 1) === a.substr(-1);
+});
 ```
